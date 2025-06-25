@@ -1,0 +1,9 @@
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\bin\Debug\DotNetDLLTest.dll
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\bin\Debug\DotNetDLLTest.pdb
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\bin\Debug\QTMDotNetKernelInterface.dll
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\bin\Debug\QTMInterface.dll
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\DotNetDLLTest.csproj.AssemblyReference.cache
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\DotNetDLLTest.csproj.CoreCompileInputs.cache
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\DotNetDLLTest.csproj.CopyComplete
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\DotNetDLLTest.dll
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\DotNetDLLTest.pdb

@@ -1,0 +1,17 @@
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\bin\Debug\MTMSDll.dll
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\bin\Debug\QTMDotNetKernelInterface.dll
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\UploadData.csproj.CoreCompileInputs.cache
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\UploadData.csproj.CopyComplete
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\bin\Debug\UploadData.dll
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\bin\Debug\UploadData.pdb
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\UploadData.dll
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\UploadData.pdb
+D:\WorkSpace\Qualcomm_Platform\DotNetDLLTest\DotNetDLLTest\obj\Debug\UploadData.csproj.AssemblyReference.cache
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\bin\Debug\UploadData.dll
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\bin\Debug\UploadData.pdb
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\bin\Debug\MTMSDll.dll
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\bin\Debug\QTMDotNetKernelInterface.dll
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.csproj.CoreCompileInputs.cache
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.csproj.CopyComplete
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.dll
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.pdb
