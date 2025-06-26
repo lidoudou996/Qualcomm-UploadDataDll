@@ -13,8 +13,6 @@ using System.Xml.Linq;
 namespace UploadData
 {
 
-
-    [QTMTestClass]
     public class LXYTestClass
     {
         public bool combine(string a, string b, out string c)
@@ -60,6 +58,8 @@ namespace UploadData
             GlobalVariable.GetGlobalVariable("SN", out sn);
 
             string currentDate = DateTime.Now.ToString("yyyy_MM_dd");
+            //防止多次运行时创建嵌套文件夹
+            _logFolderPath = @"C:\Qualcomm\UploadDataLog";
             _logFolderPath = Path.Combine(_logFolderPath, currentDate);
             logger = new Logger(_logFolderPath, _logFileName);
             string content = mUser + "\n" + mPassword + "\n" + mIpAddress + "\n"
@@ -76,7 +76,7 @@ namespace UploadData
             string targetDir = baseDir + $"\\{username}-{currentDate}-{xttName}";
             logger.Log("目标文件夹："+targetDir);
 
-            string xmlPath=FindLatestXml(targetDir,sn);            
+            string xmlPath= FindAndParseXml.FindLatestXml(targetDir,sn, logger);            
 
             // 获取需要上传的数据信息
             string dataLog = "";            
@@ -106,12 +106,12 @@ namespace UploadData
                 if (testName.Contains("GSM") || testName.Contains("WCDMA") || testName.Contains("LTE"))
                 {
                     testDataInfos_NET.Add(testDataInfo);
-                    content = $"NET数据 {i}\\{testName}";
+                    content = $"从UploadDataConfig.ini中获取到NET数据格式：\n {i}\\{testName}";
                 }
                 else if (testName.Contains("GPS"))
                 {
                     testDataInfos_GPS.Add(testDataInfo);
-                    content = $"GPS数据 {i}\\{testName}";
+                    content = $"从UploadDataConfig.ini中获取到GPS数据格式：\n {i}\\{testName}";
                 }
                 else
                 {
@@ -128,17 +128,15 @@ namespace UploadData
                 logger.Log(content);
             }
             if(testDataInfos_NET.Count > 0)
-                ParseXml_NET(ref dataLog, xmlPath, testDataInfos_NET);
+                FindAndParseXml.ParseXml_NET(ref dataLog, xmlPath, testDataInfos_NET,logger);
             if(testDataInfos_GPS.Count > 0)
-                ParseXml_GPS(ref dataLog, xmlPath, testDataInfos_GPS);
+                FindAndParseXml.ParseXml_GPS(ref dataLog, xmlPath, testDataInfos_GPS, logger);
 
-            logger.Log(dataLog);
+            logger.Log("找到数据如下：\n"+dataLog);
 
             if(string.IsNullOrEmpty(dataLog))
             {
                 logger.Log("数据为空，停止上传");
-                //防止多次运行时创建嵌套文件夹
-                _logFolderPath = @"C:\Qualcomm\UploadDataLog";
                 return false;
             }
             //上传数据
@@ -167,6 +165,7 @@ namespace UploadData
                 mEncPassword = mtms.mStrEncPassword;
                 content = "mtms登录失败\n 原因： " + RetMsg;
                 logger.Log(content);
+                return false;
             }
 
             /*输入参数：string account(用户名), string password(密码)， string productSN（整机序列号），string equipmentID（工装ID）,string softwareName（配置文件名称）,string softwareVer（配置文件版本）, string testPattern（测试模式）, string logs（日志信息）
@@ -191,8 +190,6 @@ namespace UploadData
             content = "create ET_UploadTestLogReq上传数据，信息如下：\n  " + Req.sUserName + "\n  " + mPassword + "\n  "
                 + Req.sPassword + "\n  " + Req.sIP + "\n  " + Req.sProductSN + "\n  " + dataLog;
             logger.Log(content);
-            //防止多次运行时创建嵌套文件夹
-            _logFolderPath = @"C:\Qualcomm\UploadDataLog";
 
             if (mtms.EA_iProductDebugLogUpload(Req, ref Rst) == true)
             {
@@ -218,8 +215,11 @@ namespace UploadData
 
             return true;
         }
+    }
 
-        public void ParseXml_NET(ref string log, string xmlPath, List<TestDataInfo> testDataInfos)
+    public class FindAndParseXml
+    {
+        static public void ParseXml_NET(ref string log, string xmlPath, List<TestDataInfo> testDataInfos, Logger logger)
         {
             //var logger = new Logger(_logFolderPath, _logFileName);
             logger.Log("开始解析NET数据");
@@ -309,15 +309,15 @@ namespace UploadData
             }
         }
 
-        public void ParseXml_GPS(ref string log, string xmlPath, List<TestDataInfo> testDataInfos)
-        {            
+        static public void ParseXml_GPS(ref string log, string xmlPath, List<TestDataInfo> testDataInfos, Logger logger)
+        {
             logger.Log("开始解析GPS数据");
             if (string.IsNullOrEmpty(xmlPath))
                 return;
 
             // 加载 XML 文件
             XDocument xmlDoc = XDocument.Load(xmlPath);
-            
+
             if (testDataInfos.Count < 1)
                 logger.Log("数据配置信息异常，请检查C:\\Databases\\UploadDataConfig.ini");
 
@@ -399,7 +399,8 @@ namespace UploadData
                 }
             }
         }
-        public string FindLatestXml(string targetDir, string sn)
+
+        static public string FindLatestXml(string targetDir, string sn, Logger logger)
         {
             //var logger = new Logger(_logFolderPath, _logFileName);
             string xmlPath = "";
@@ -429,8 +430,8 @@ namespace UploadData
                     logger.Log($"找到修改时间在两分钟以内的最新xml文件：{newestFile.FullName}");
                 }
                 else
-                {                    
-                    logger.Log("在指定文件夹中未找到修改时间在两分钟以内的xml文件。");
+                {
+                    logger.Log($"在指定文件夹中未找到修改时间在两分钟以内，序列号为{sn}的xml文件。");
                 }
             }
             catch (DirectoryNotFoundException)

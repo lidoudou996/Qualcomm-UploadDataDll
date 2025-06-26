@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UploadData
 {
-    class Logger
+    public class Logger
     {
         private readonly string _logFolderPath;
         private readonly string _logFileName;

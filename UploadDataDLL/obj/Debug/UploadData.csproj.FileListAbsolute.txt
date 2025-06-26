@@ -15,3 +15,4 @@ D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.
 D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.csproj.CopyComplete
 D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.dll
 D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.pdb
+D:\WorkSpace\Qualcomm_Platform\UploadDataDLL\UploadDataDLL\obj\Debug\UploadData.csproj.AssemblyReference.cache
