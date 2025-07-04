@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.cs" />
     <Compile Include="HttpControler.cs" />
     <Compile Include="Ini.cs" />
     <Compile Include="Logger.cs" />

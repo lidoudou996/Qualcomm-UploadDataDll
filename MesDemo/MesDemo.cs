@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using QC.QTMDotNetKernelInterface;
-using MTMSDll;
 using System.IO;
 using System.Data;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
 using QC.QsprTestObjects;
+
 
 namespace MesDemo
 {
@@ -47,8 +47,9 @@ namespace MesDemo
         public bool UploadData()
         {
             string currentDate = DateTime.Now.ToString("yyyy_MM_dd");
+            string assemblyPath = Global.GetAssemblyDirectory();//获取dll位置
             //防止多次运行时创建嵌套文件夹
-            _logFolderPath = @"C:\Qualcomm\MesDemoLog";
+            _logFolderPath = assemblyPath + "\\MesDemoLog";
             _logFolderPath = Path.Combine(_logFolderPath, currentDate);
             Logger.Initialize(_logFolderPath, _logFileName_UploadData);
 
@@ -56,8 +57,10 @@ namespace MesDemo
             GlobalVariable.GetGlobalVariable("SN", out sn);
 
             //获取MES系统信息
+            string configPath = assemblyPath + @"\MesDemoConfig\MesDemoConfig.ini";
+            Logger.Log(configPath);
             Ini Settings = new Ini();
-            Settings.load(@"C:\Databases\UploadDataConfig.ini");
+            Settings.load(configPath);
             string User = Settings.getValue("UserName");
             string Ip = Settings.getValue("IP");
             string Port = Settings.getValue("Port");
@@ -111,12 +114,12 @@ namespace MesDemo
                 if (testName.Contains("GSM") || testName.Contains("WCDMA") || testName.Contains("LTE"))
                 {
                     testDataInfos_NET.Add(testDataInfo);
-                    content = $"从UploadDataConfig.ini中获取到NET数据格式：\n {i}\\{testName}\n";
+                    content = $"从MesDemoConfig.ini中获取到NET数据格式：\n {i}\\{testName}\n";
                 }
                 else if (testName.Contains("GPS"))
                 {
                     testDataInfos_GPS.Add(testDataInfo);
-                    content = $"从UploadDataConfig.ini中获取到GPS数据格式：\n {i}\\{testName}\n";
+                    content = $"从MesDemoConfig.ini中获取到GPS数据格式：\n {i}\\{testName}\n";
                 }
                 else
                 {
@@ -160,7 +163,8 @@ namespace MesDemo
                 Account = User,
                 Password = Password,
                 ProductSN = sn,
-                Logs = uploadLog
+                Logs = uploadLog,
+                EquipmentID = "1"
             };
 
             int statusCode;
@@ -178,8 +182,9 @@ namespace MesDemo
         public bool UploadProceedId()
         {
             string currentDate = DateTime.Now.ToString("yyyy_MM_dd");
+            string assemblyPath = Global.GetAssemblyDirectory();//获取dll位置
             //防止多次运行时创建嵌套文件夹
-            _logFolderPath = @"C:\Qualcomm\MesDemoLog";
+            _logFolderPath = assemblyPath + "\\MesDemoLog";
             _logFolderPath = Path.Combine(_logFolderPath, currentDate);
             Logger.Initialize(_logFolderPath, _logFileName_UploadProceedId);
 
@@ -187,8 +192,9 @@ namespace MesDemo
             GlobalVariable.GetGlobalVariable("SN", out sn);
 
             //获取MES系统信息
+            string configPath = assemblyPath + @"\MesDemoConfig\MesDemoConfig.ini";
             Ini Settings = new Ini();
-            Settings.load(@"C:\Databases\UploadDataConfig.ini");
+            Settings.load(configPath);
             string User = Settings.getValue("UserName");
             string Ip = Settings.getValue("IP");
             string Port = Settings.getValue("Port");
@@ -196,6 +202,17 @@ namespace MesDemo
             string content = User + "\n" + Password + "\n" + Ip + "\n" + Port + "\n"
                 + "产品序列号：" + sn + "\n";
             Logger.Log(content);
+
+            string GONOGO_RESULT = "";
+            GlobalVariable.GetGlobalVariable("GONOGO_RESULT", out GONOGO_RESULT);
+            if(GONOGO_RESULT != "Passed")
+            {
+                Logger.Log("耦合测试未通过，停止工序id上传");
+                return false;
+            }
+
+
+
 
             GetConfigFileByProductSN_Params paramGetSummon = new GetConfigFileByProductSN_Params
             {
@@ -253,7 +270,7 @@ namespace MesDemo
             XDocument xmlDoc = XDocument.Load(xmlPath);
 
             if (testDataInfos.Count < 1)
-                Logger.Log("数据配置信息异常，请检查C:\\Databases\\UploadDataConfig.ini");
+                Logger.Log("数据配置信息异常，请检查MesDemoConfig.ini");
 
             // 循环获取符合要求的数据 - 根据索引位置一一对应
             int i = 0;
@@ -337,7 +354,7 @@ namespace MesDemo
             XDocument xmlDoc = XDocument.Load(xmlPath);
 
             if (testDataInfos.Count < 1)
-                Logger.Log("数据配置信息异常，请检查C:\\Databases\\UploadDataConfig.ini");
+                Logger.Log("数据配置信息异常，请检查MesDemoConfig.ini");
 
             // 循环获取符合要求的数据 - 根据索引位置一一对应
             int i = 0;
