@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
 
+
+
 namespace MesDemo
 {
     class Global
@@ -17,5 +19,6 @@ namespace MesDemo
             string path = Uri.UnescapeDataString(uri.Path);
             return Path.GetDirectoryName(path);
         }
+
     }
 }

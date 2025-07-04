@@ -8,12 +8,10 @@ using System.IO;
 using System.Data;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
-using QC.QsprTestObjects;
 
 
 namespace MesDemo
 {
-
     public class LXYTestClass
     {
         public bool combine(string a, string b, out string c)
@@ -23,6 +21,7 @@ namespace MesDemo
             c = a + b;
             DebugMessage.Write("LXYTest", "SN:" + sn, System.Diagnostics.TraceLevel.Verbose);
             DebugMessage.Write("LXYTest", "c:" + c, System.Diagnostics.TraceLevel.Verbose);
+            
             return true;
         }
     }
@@ -43,6 +42,7 @@ namespace MesDemo
         public string _logFolderPath = @"C:\Qualcomm\MesDemoLog";
         public string _logFileName_UploadData = "UploadDataLog.log";
         public string _logFileName_UploadProceedId = "UploadProceedIdLog.log";
+        const bool LOGTOWINDOW = true;
 
         public bool UploadData()
         {
@@ -51,7 +51,7 @@ namespace MesDemo
             //防止多次运行时创建嵌套文件夹
             _logFolderPath = assemblyPath + "\\MesDemoLog";
             _logFolderPath = Path.Combine(_logFolderPath, currentDate);
-            Logger.Initialize(_logFolderPath, _logFileName_UploadData);
+            Logger.Initialize(_logFolderPath, _logFileName_UploadData, "UploadData");
 
             string sn = "";
             GlobalVariable.GetGlobalVariable("SN", out sn);
@@ -65,9 +65,10 @@ namespace MesDemo
             string Ip = Settings.getValue("IP");
             string Port = Settings.getValue("Port");
             string Password = Settings.getValue("Password");
-            string content = User + "\n" + Password + "\n" + Ip + "\n" + Port + "\n"
-                + "产品序列号：" + sn + "\n";
-            Logger.Log(content);
+            string content = "用户名：" + User + "\n" + "密码：" + Password + "\n" + "IP：" + Ip + "\n" + "Port：" + Port + "\n"
+                + "产品序列号：" + sn;
+            Logger.Log(content, LOGTOWINDOW); 
+
 
             //获取xml文件路径，所有log文件夹C:\Qualcomm\Log，
             //具体xttlog文件夹规则：用户名-日期-xtt名称  例：LIXY1-2025_06_24-Qualcomm_P30_EM_250624
@@ -77,12 +78,12 @@ namespace MesDemo
             GlobalVariable.GetGlobalVariable("TreeFileName", out treePath);
             string xttName = Path.GetFileNameWithoutExtension(treePath);
             string targetDir = baseDir + $"\\{username}-{currentDate}-{xttName}";
-            Logger.Log("目标文件夹："+targetDir);
+            Logger.Log("目标文件夹："+targetDir, LOGTOWINDOW);
 
             string xmlPath= FindAndParseXml.FindLatestXml(targetDir,sn);
             if (string.IsNullOrEmpty(xmlPath))
             {
-                Logger.Log("未找到数据xml文件，停止上传");
+                Logger.Log("未找到数据xml文件，停止上传", LOGTOWINDOW);
                 return false;
             }
 
@@ -139,11 +140,11 @@ namespace MesDemo
             if(testDataInfos_GPS.Count > 0)
                 FindAndParseXml.ParseXml_GPS(ref dataLog, xmlPath, testDataInfos_GPS);
 
-            Logger.Log("找到数据如下：\n"+dataLog);
+            Logger.Log("找到数据如下：\n"+dataLog, LOGTOWINDOW);
 
             if(string.IsNullOrEmpty(dataLog))
             {
-                Logger.Log("数据为空，停止上传");
+                Logger.Log("数据为空，停止上传", LOGTOWINDOW);
                 return false;
             }
 
@@ -172,7 +173,7 @@ namespace MesDemo
             (statusCode, errMsg) = STHttp.UploadProductDebugLog(param);
             if(statusCode != 0)
             {
-                Logger.Log("上传数据失败，失败原因：" + errMsg);
+                Logger.Log("上传数据失败，失败原因：" + errMsg, LOGTOWINDOW);
                 return false;
             }
 
@@ -186,7 +187,7 @@ namespace MesDemo
             //防止多次运行时创建嵌套文件夹
             _logFolderPath = assemblyPath + "\\MesDemoLog";
             _logFolderPath = Path.Combine(_logFolderPath, currentDate);
-            Logger.Initialize(_logFolderPath, _logFileName_UploadProceedId);
+            Logger.Initialize(_logFolderPath, _logFileName_UploadProceedId, "UploadProceedId");
 
             string sn = "";
             GlobalVariable.GetGlobalVariable("SN", out sn);
@@ -199,20 +200,17 @@ namespace MesDemo
             string Ip = Settings.getValue("IP");
             string Port = Settings.getValue("Port");
             string Password = Settings.getValue("Password");
-            string content = User + "\n" + Password + "\n" + Ip + "\n" + Port + "\n"
-                + "产品序列号：" + sn + "\n";
-            Logger.Log(content);
+            string content = "用户名：" + User + "\n" + "密码：" + Password + "\n" + "IP：" + Ip + "\n" + "Port：" + Port + "\n"
+                + "产品序列号：" + sn;
+            Logger.Log(content, LOGTOWINDOW);
 
             string GONOGO_RESULT = "";
             GlobalVariable.GetGlobalVariable("GONOGO_RESULT", out GONOGO_RESULT);
             if(GONOGO_RESULT != "Passed")
             {
-                Logger.Log("耦合测试未通过，停止工序id上传");
+                Logger.Log("耦合测试未通过，停止工序id上传", LOGTOWINDOW);
                 return false;
             }
-
-
-
 
             GetConfigFileByProductSN_Params paramGetSummon = new GetConfigFileByProductSN_Params
             {
@@ -227,7 +225,7 @@ namespace MesDemo
             int res = STHttp.GetConfigFileByProductSN(paramGetSummon, resGetSummon);
             if(res != 0)
             {
-                Logger.Log("获取传票号失败：" + resGetSummon.Msg);
+                Logger.Log("获取传票号失败：" + resGetSummon.Msg, LOGTOWINDOW);
                 return false;
             }
 
@@ -251,7 +249,7 @@ namespace MesDemo
             (statusCode, errMsg) = STHttp.UploadProcessId(paramUploadId);
             if(statusCode != 0)
             {
-                Logger.Log("上传工序id失败：" + errMsg);
+                Logger.Log("上传工序id失败：" + errMsg, LOGTOWINDOW);
                 return false;
             }
 
@@ -261,16 +259,17 @@ namespace MesDemo
 
     public class FindAndParseXml
     {
+        const bool LOGTOWINDOW = true;
         static public void ParseXml_NET(ref string log, string xmlPath, List<TestDataInfo> testDataInfos)
         {
             //var logger = new Logger(_logFolderPath, _logFileName);
-            Logger.Log("开始解析NET数据");
+            Logger.Log("开始解析NET数据", LOGTOWINDOW);
 
             // 加载 XML 文件
             XDocument xmlDoc = XDocument.Load(xmlPath);
 
             if (testDataInfos.Count < 1)
-                Logger.Log("数据配置信息异常，请检查MesDemoConfig.ini");
+                Logger.Log("数据配置信息异常，请检查MesDemoConfig.ini", LOGTOWINDOW);
 
             // 循环获取符合要求的数据 - 根据索引位置一一对应
             int i = 0;
@@ -348,13 +347,13 @@ namespace MesDemo
 
         static public void ParseXml_GPS(ref string log, string xmlPath, List<TestDataInfo> testDataInfos)
         {
-            Logger.Log("开始解析GPS数据");
+            Logger.Log("开始解析GPS数据", LOGTOWINDOW);
 
             // 加载 XML 文件
             XDocument xmlDoc = XDocument.Load(xmlPath);
 
             if (testDataInfos.Count < 1)
-                Logger.Log("数据配置信息异常，请检查MesDemoConfig.ini");
+                Logger.Log("数据配置信息异常，请检查MesDemoConfig.ini", LOGTOWINDOW);
 
             // 循环获取符合要求的数据 - 根据索引位置一一对应
             int i = 0;
@@ -460,24 +459,24 @@ namespace MesDemo
                     FileInfo newestFile = recentFiles[0];
                     xmlPath = newestFile.FullName;
 
-                    Logger.Log($"找到修改时间在两分钟以内的最新xml文件：{newestFile.FullName}");
+                    Logger.Log($"找到修改时间在两分钟以内的最新xml文件：{newestFile.FullName}", LOGTOWINDOW);
                 }
                 else
                 {
-                    Logger.Log($"在指定文件夹中未找到修改时间在两分钟以内，序列号为{sn}的xml文件。");
+                    Logger.Log($"在指定文件夹中未找到修改时间在两分钟以内，序列号为{sn}的xml文件。", LOGTOWINDOW);
                 }
             }
             catch (DirectoryNotFoundException)
             {
-                Logger.Log("错误：指定的文件夹不存在。");
+                Logger.Log("错误：指定的文件夹不存在。", LOGTOWINDOW);
             }
             catch (UnauthorizedAccessException)
             {
-                Logger.Log("错误：没有权限访问该文件夹或文件。");
+                Logger.Log("错误：没有权限访问该文件夹或文件。", LOGTOWINDOW);
             }
             catch (Exception ex)
             {
-                Logger.Log($"发生错误：{ex.Message}");
+                Logger.Log($"查找xml文件时发生错误：{ex.Message}", LOGTOWINDOW);
             }
             return xmlPath;
         }

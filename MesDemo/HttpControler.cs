@@ -185,6 +185,8 @@ namespace MesDemo
     // 定义业务数据收发接口
     public static class STHttp
     {
+        const bool LOGTOWINDOW = true;
+
         [DllImport("LandiSecurity.dll", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "RC4_EncryptData")]
         private static extern IntPtr RC4_EncryptData(IntPtr pcInData, IntPtr pcKey);
 
@@ -379,7 +381,7 @@ namespace MesDemo
         // 修改：同步方法
         public static int GetConfigFileByProductSN(GetConfigFileByProductSN_Params _params, GetBomInfoByBoardSN_Res _res)
         {
-            Logger.Log("开始获取传票号");
+            Logger.Log("开始获取传票号", LOGTOWINDOW);
             HttpInfo httpInfo = new HttpInfo
             {
                 url = Constants.TisGetConfigFileByProductSN,
@@ -419,7 +421,7 @@ namespace MesDemo
             {
                 JObject obj = JObject.Parse(retMsg);
                 _res.SummonsNumber = obj["SucceedDescription"].ToString();
-                Logger.Log("获取到传票号：" + _res.SummonsNumber);
+                Logger.Log("获取到传票号：" + _res.SummonsNumber, LOGTOWINDOW);
                 return 0;
             }
             catch (Exception ex)
@@ -431,7 +433,7 @@ namespace MesDemo
 
         public static (int StatusCode, string ErrMsg) UploadProductDebugLog(ProductDebugLogUpload_Params _params)
         {
-            Logger.Log("开始上传数据");
+            Logger.Log("开始上传数据", LOGTOWINDOW);
             HttpInfo httpInfo = new HttpInfo
             {
                 url = Constants.TisProductDebugLogUpload,
@@ -465,14 +467,14 @@ namespace MesDemo
                     return (-1, $"JSON parsing error: {ex.Message}");
                 }
             }
-            Logger.Log("数据上传成功：\n" + _params.Logs);
+            Logger.Log("数据上传成功：\n" + _params.Logs, LOGTOWINDOW);
             return (0, "");
         }
 
         // 修改：同步方法，使用元组返回结果
         public static (int StatusCode, string ErrMsg) UploadProcessId(TISWipTrackEx_Params _params)
         {
-            Logger.Log("开始上传工序id");
+            Logger.Log("开始上传工序id", LOGTOWINDOW);
             HttpInfo httpInfo = new HttpInfo
             {
                 url = Constants.TisWipTrackEx,
@@ -502,7 +504,7 @@ namespace MesDemo
                     return (-1, $"JSON parsing error: {ex.Message}");
                 }
             }
-            Logger.Log("工序id上传成功,id:"+ _params.WorkProcessID);
+            Logger.Log("工序id上传成功,id:"+ _params.WorkProcessID, LOGTOWINDOW);
             return (0, "");
         }
     }

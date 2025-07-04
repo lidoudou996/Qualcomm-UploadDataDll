@@ -1,21 +1,21 @@
-[2025-07-04 14:34:26.251]
+[2025-07-04 16:25:41.688]
 D:\WorkSpace\Qualcomm_Platform\MesDemoDLL\MesDemo\bin\Debug\MesDemoConfig\MesDemoConfig.ini
 
-[2025-07-04 14:34:26.253]
+[2025-07-04 16:25:41.691]
 lixy1
-11111111
+11111112
 10.10.30.38
 80
 产品序列号：24A03600028
 
 
-[2025-07-04 14:34:26.255]
+[2025-07-04 16:25:41.692]
 目标文件夹：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS
 
-[2025-07-04 14:34:26.257]
+[2025-07-04 16:25:41.697]
 找到修改时间在两分钟以内的最新xml文件：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS\UserDefine-24A03600028-2025_06_25_11_26_55_991-GL-.xml
 
-[2025-07-04 14:34:26.258]
+[2025-07-04 16:25:41.698]
 从MesDemoConfig.ini中获取到NET数据格式：
  1\LTE_MaxPower
 1\1\LTE_MaxPower
@@ -24,7 +24,7 @@ lixy1
 1\2\AvgTxPwr
 
 
-[2025-07-04 14:34:26.258]
+[2025-07-04 16:25:41.698]
 从MesDemoConfig.ini中获取到NET数据格式：
  2\WCDMA_MaxOutputPower
 2\1\UE_Power
@@ -33,7 +33,7 @@ lixy1
 2\2\Tx Power
 
 
-[2025-07-04 14:34:26.258]
+[2025-07-04 16:25:41.699]
 从MesDemoConfig.ini中获取到NET数据格式：
  3\GSMBurstTiming
 3\1\GSMBurstTiming
@@ -42,7 +42,7 @@ lixy1
 3\2\avgTxPwr
 
 
-[2025-07-04 14:34:26.260]
+[2025-07-04 16:25:41.699]
 从MesDemoConfig.ini中获取到GPS数据格式：
  4\Radiated_GPS_Measure
 4\1\Radiated_GPS_Measure
@@ -51,15 +51,15 @@ lixy1
 4\2\GPS_Mobile_reported_C/No
 
 
-[2025-07-04 14:34:26.262]
+[2025-07-04 16:25:41.701]
 开始解析NET数据
 
-[2025-07-04 14:34:26.263]
+[2025-07-04 16:25:41.702]
 第1次查找：
   LTE_MaxPower:LTE_MaxPower:Band
   LTE_MaxPower:Tx Power:AvgTxPwr
 
-[2025-07-04 14:34:26.266]
+[2025-07-04 16:25:41.704]
 找到数据：LTE_MaxPower, Band_1,AvgTxPwr_13.93,FAIL;
 找到数据：LTE_MaxPower, Band_2,AvgTxPwr_0.00,FAIL;
 找到数据：LTE_MaxPower, Band_3,AvgTxPwr_22.47,PASS;
@@ -71,35 +71,35 @@ lixy1
 找到数据：LTE_MaxPower, Band_38,AvgTxPwr_10.67,FAIL;
 
 
-[2025-07-04 14:34:26.266]
+[2025-07-04 16:25:41.705]
 第2次查找：
   WCDMA_MaxOutputPower:UE_Power:Band
   WCDMA_MaxOutputPower:UE_Power:Tx Power
 
-[2025-07-04 14:34:26.266]
+[2025-07-04 16:25:41.705]
 未找到Band和Tx Power的匹配值 WCDMA_MaxOutputPower:UE_Power:Band:UE_Power:Tx Power
 
-[2025-07-04 14:34:26.267]
+[2025-07-04 16:25:41.706]
 第3次查找：
   GSMBurstTiming:GSMBurstTiming:Band
   GSMBurstTiming:GSMBurstTiming:avgTxPwr
 
-[2025-07-04 14:34:26.267]
+[2025-07-04 16:25:41.706]
 找到数据：GSMBurstTiming, Band_EGSM,avgTxPwr_30.14,FAIL;
 
 
-[2025-07-04 14:34:26.276]
+[2025-07-04 16:25:41.708]
 开始解析GPS数据
 
-[2025-07-04 14:34:26.277]
+[2025-07-04 16:25:41.709]
 第1次查找：
   Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_frequency
   Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_C/No
 
-[2025-07-04 14:34:26.278]
+[2025-07-04 16:25:41.710]
 未找到GPS_Mobile_reported_frequency和GPS_Mobile_reported_C/No的匹配值 Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_frequency:Radiated_GPS_Measure:GPS_Mobile_reported_C/No
 
-[2025-07-04 14:34:26.278]
+[2025-07-04 16:25:41.710]
 找到数据如下：
 LTE_MaxPower, Band_1,AvgTxPwr_13.93,FAIL;
 LTE_MaxPower, Band_2,AvgTxPwr_0.00,FAIL;
@@ -113,18 +113,243 @@ LTE_MaxPower, Band_38,AvgTxPwr_10.67,FAIL;
 GSMBurstTiming, Band_EGSM,avgTxPwr_30.14,FAIL;
 
 
-[2025-07-04 14:34:26.282]
+[2025-07-04 16:25:41.714]
 开始上传数据
 
-[2025-07-04 14:34:26.283]
+[2025-07-04 16:25:41.716]
+密码加密：456E632D53656E732D496E666F2D41003031303108000000032182120800000055A63B23A88FF5E8
+
+[2025-07-04 16:25:41.860]
+{"IsOK":"false","Num":"0","SucceedNum":"0","FailNum":"0","Description":"用户账号或密码错误","StateCodeID":"0"}
+
+[2025-07-04 16:25:41.870]
+上传数据失败，失败原因：用户账号或密码错误
+
+[2025-07-04 16:27:41.394]
+D:\WorkSpace\Qualcomm_Platform\MesDemoDLL\MesDemo\bin\Debug\MesDemoConfig\MesDemoConfig.ini
+
+[2025-07-04 16:27:41.395]
+用户名：lixy1
+密码：11111111
+IP：10.10.30.38
+Port：80
+产品序列号：24A03600028
+
+
+[2025-07-04 16:27:41.396]
+目标文件夹：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS
+
+[2025-07-04 16:27:41.398]
+找到修改时间在两分钟以内的最新xml文件：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS\UserDefine-24A03600028-2025_07_04-16_25_42_016--.xml
+
+[2025-07-04 16:27:41.399]
+从MesDemoConfig.ini中获取到NET数据格式：
+ 1\LTE_MaxPower
+1\1\LTE_MaxPower
+1\1\Band
+1\2\Tx Power
+1\2\AvgTxPwr
+
+
+[2025-07-04 16:27:41.399]
+从MesDemoConfig.ini中获取到NET数据格式：
+ 2\WCDMA_MaxOutputPower
+2\1\UE_Power
+2\1\Band
+2\2\UE_Power
+2\2\Tx Power
+
+
+[2025-07-04 16:27:41.400]
+从MesDemoConfig.ini中获取到NET数据格式：
+ 3\GSMBurstTiming
+3\1\GSMBurstTiming
+3\1\Band
+3\2\GSMBurstTiming
+3\2\avgTxPwr
+
+
+[2025-07-04 16:27:41.400]
+从MesDemoConfig.ini中获取到GPS数据格式：
+ 4\Radiated_GPS_Measure
+4\1\Radiated_GPS_Measure
+4\1\GPS_Mobile_reported_frequency
+4\2\Radiated_GPS_Measure
+4\2\GPS_Mobile_reported_C/No
+
+
+[2025-07-04 16:27:41.401]
+开始解析NET数据
+
+[2025-07-04 16:27:41.402]
+第1次查找：
+  LTE_MaxPower:LTE_MaxPower:Band
+  LTE_MaxPower:Tx Power:AvgTxPwr
+
+[2025-07-04 16:27:41.403]
+未找到Band和AvgTxPwr的匹配值 LTE_MaxPower:LTE_MaxPower:Band:Tx Power:AvgTxPwr
+
+[2025-07-04 16:27:41.403]
+第2次查找：
+  WCDMA_MaxOutputPower:UE_Power:Band
+  WCDMA_MaxOutputPower:UE_Power:Tx Power
+
+[2025-07-04 16:27:41.404]
+未找到Band和Tx Power的匹配值 WCDMA_MaxOutputPower:UE_Power:Band:UE_Power:Tx Power
+
+[2025-07-04 16:27:41.404]
+第3次查找：
+  GSMBurstTiming:GSMBurstTiming:Band
+  GSMBurstTiming:GSMBurstTiming:avgTxPwr
+
+[2025-07-04 16:27:41.405]
+未找到Band和avgTxPwr的匹配值 GSMBurstTiming:GSMBurstTiming:Band:GSMBurstTiming:avgTxPwr
+
+[2025-07-04 16:27:41.406]
+开始解析GPS数据
+
+[2025-07-04 16:27:41.407]
+第1次查找：
+  Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_frequency
+  Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_C/No
+
+[2025-07-04 16:27:41.408]
+未找到GPS_Mobile_reported_frequency和GPS_Mobile_reported_C/No的匹配值 Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_frequency:Radiated_GPS_Measure:GPS_Mobile_reported_C/No
+
+[2025-07-04 16:27:41.408]
+找到数据如下：
+
+
+[2025-07-04 16:27:41.409]
+数据为空，停止上传
+
+[2025-07-04 16:28:04.703]
+D:\WorkSpace\Qualcomm_Platform\MesDemoDLL\MesDemo\bin\Debug\MesDemoConfig\MesDemoConfig.ini
+
+[2025-07-04 16:28:04.705]
+用户名：lixy1
+密码：11111111
+IP：10.10.30.38
+Port：80
+产品序列号：24A03600028
+
+
+[2025-07-04 16:28:04.705]
+目标文件夹：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS
+
+[2025-07-04 16:28:04.706]
+找到修改时间在两分钟以内的最新xml文件：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS\UserDefine-24A03600028-2025_06_25_11_26_55_991-GL-.xml
+
+[2025-07-04 16:28:04.707]
+从MesDemoConfig.ini中获取到NET数据格式：
+ 1\LTE_MaxPower
+1\1\LTE_MaxPower
+1\1\Band
+1\2\Tx Power
+1\2\AvgTxPwr
+
+
+[2025-07-04 16:28:04.708]
+从MesDemoConfig.ini中获取到NET数据格式：
+ 2\WCDMA_MaxOutputPower
+2\1\UE_Power
+2\1\Band
+2\2\UE_Power
+2\2\Tx Power
+
+
+[2025-07-04 16:28:04.709]
+从MesDemoConfig.ini中获取到NET数据格式：
+ 3\GSMBurstTiming
+3\1\GSMBurstTiming
+3\1\Band
+3\2\GSMBurstTiming
+3\2\avgTxPwr
+
+
+[2025-07-04 16:28:04.709]
+从MesDemoConfig.ini中获取到GPS数据格式：
+ 4\Radiated_GPS_Measure
+4\1\Radiated_GPS_Measure
+4\1\GPS_Mobile_reported_frequency
+4\2\Radiated_GPS_Measure
+4\2\GPS_Mobile_reported_C/No
+
+
+[2025-07-04 16:28:04.709]
+开始解析NET数据
+
+[2025-07-04 16:28:04.711]
+第1次查找：
+  LTE_MaxPower:LTE_MaxPower:Band
+  LTE_MaxPower:Tx Power:AvgTxPwr
+
+[2025-07-04 16:28:04.713]
+找到数据：LTE_MaxPower, Band_1,AvgTxPwr_13.93,FAIL;
+找到数据：LTE_MaxPower, Band_2,AvgTxPwr_0.00,FAIL;
+找到数据：LTE_MaxPower, Band_3,AvgTxPwr_22.47,PASS;
+找到数据：LTE_MaxPower, Band_4,AvgTxPwr_-999.00,FAIL;
+找到数据：LTE_MaxPower, Band_5,AvgTxPwr_21.89,PASS;
+找到数据：LTE_MaxPower, Band_7,AvgTxPwr_24.84,PASS;
+找到数据：LTE_MaxPower, Band_8,AvgTxPwr_21.77,PASS;
+找到数据：LTE_MaxPower, Band_28,AvgTxPwr_19.66,FAIL;
+找到数据：LTE_MaxPower, Band_38,AvgTxPwr_10.67,FAIL;
+
+
+[2025-07-04 16:28:04.713]
+第2次查找：
+  WCDMA_MaxOutputPower:UE_Power:Band
+  WCDMA_MaxOutputPower:UE_Power:Tx Power
+
+[2025-07-04 16:28:04.713]
+未找到Band和Tx Power的匹配值 WCDMA_MaxOutputPower:UE_Power:Band:UE_Power:Tx Power
+
+[2025-07-04 16:28:04.714]
+第3次查找：
+  GSMBurstTiming:GSMBurstTiming:Band
+  GSMBurstTiming:GSMBurstTiming:avgTxPwr
+
+[2025-07-04 16:28:04.714]
+找到数据：GSMBurstTiming, Band_EGSM,avgTxPwr_30.14,FAIL;
+
+
+[2025-07-04 16:28:04.715]
+开始解析GPS数据
+
+[2025-07-04 16:28:04.717]
+第1次查找：
+  Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_frequency
+  Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_C/No
+
+[2025-07-04 16:28:04.717]
+未找到GPS_Mobile_reported_frequency和GPS_Mobile_reported_C/No的匹配值 Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_frequency:Radiated_GPS_Measure:GPS_Mobile_reported_C/No
+
+[2025-07-04 16:28:04.717]
+找到数据如下：
+LTE_MaxPower, Band_1,AvgTxPwr_13.93,FAIL;
+LTE_MaxPower, Band_2,AvgTxPwr_0.00,FAIL;
+LTE_MaxPower, Band_3,AvgTxPwr_22.47,PASS;
+LTE_MaxPower, Band_4,AvgTxPwr_-999.00,FAIL;
+LTE_MaxPower, Band_5,AvgTxPwr_21.89,PASS;
+LTE_MaxPower, Band_7,AvgTxPwr_24.84,PASS;
+LTE_MaxPower, Band_8,AvgTxPwr_21.77,PASS;
+LTE_MaxPower, Band_28,AvgTxPwr_19.66,FAIL;
+LTE_MaxPower, Band_38,AvgTxPwr_10.67,FAIL;
+GSMBurstTiming, Band_EGSM,avgTxPwr_30.14,FAIL;
+
+
+[2025-07-04 16:28:04.722]
+开始上传数据
+
+[2025-07-04 16:28:04.724]
 密码加密：456E632D53656E732D496E666F2D41003031303108000000B9708B8B0800000055A63B23A88FF5EB
 
-[2025-07-04 14:34:26.400]
+[2025-07-04 16:28:04.856]
 {"IsOK":"true","Num":"0","SucceedNum":"0","FailNum":"0","StateCodeID":"0","ExtData":"{\"BarCodeSn\":\"24A03600028\",\"SummonsNumber\":\"24A036\",\"MaterialCode\":\"YG01002427\",\"TerminalSn\":\"\",\"CustomerSerialNumber\":\"\",\"PsamId\":\"\",\"Tusn\":\"\",\"SNType\":\"0\"}"}
 
-[2025-07-04 14:34:26.401]
+[2025-07-04 16:28:04.857]
 数据上传成功：
-2025-07-04 14:34:26@RF Test@@LTE_MaxPower, Band_1,AvgTxPwr_13.93,FAIL;
+2025-07-04 16:28:04@RF Test@@LTE_MaxPower, Band_1,AvgTxPwr_13.93,FAIL;
 LTE_MaxPower, Band_2,AvgTxPwr_0.00,FAIL;
 LTE_MaxPower, Band_3,AvgTxPwr_22.47,PASS;
 LTE_MaxPower, Band_4,AvgTxPwr_-999.00,FAIL;
@@ -136,141 +361,43 @@ LTE_MaxPower, Band_38,AvgTxPwr_10.67,FAIL;
 GSMBurstTiming, Band_EGSM,avgTxPwr_30.14,FAIL;
 @0
 
-[2025-07-04 14:50:05.974]
+[2025-07-04 16:32:14.236]
 D:\WorkSpace\Qualcomm_Platform\MesDemoDLL\MesDemo\bin\Debug\MesDemoConfig\MesDemoConfig.ini
 
-[2025-07-04 14:50:05.975]
-lixy1
-11111111
-10.10.30.38
-80
-产品序列号：24A03600028
+[2025-07-04 16:32:14.238]
+用户名：lixy1
+密码：11111111
+IP：10.10.30.38
+Port：80
+产品序列号：2
 
 
-[2025-07-04 14:50:05.976]
+[2025-07-04 16:32:14.239]
 目标文件夹：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS
 
-[2025-07-04 14:50:05.977]
-在指定文件夹中未找到修改时间在两分钟以内，序列号为24A03600028的xml文件。
+[2025-07-04 16:32:14.241]
+在指定文件夹中未找到修改时间在两分钟以内，序列号为2的xml文件。
 
-[2025-07-04 14:50:05.978]
+[2025-07-04 16:32:14.242]
 未找到数据xml文件，停止上传
 
-[2025-07-04 14:50:39.578]
+[2025-07-04 17:05:11.146]
 D:\WorkSpace\Qualcomm_Platform\MesDemoDLL\MesDemo\bin\Debug\MesDemoConfig\MesDemoConfig.ini
 
-[2025-07-04 14:50:39.580]
-lixy1
-11111111
-10.10.30.38
-80
-产品序列号：24A0360002
+[2025-07-04 17:05:11.148]
+用户名：lixy1
+密码：11111111
+IP：10.10.30.38
+Port：80
+产品序列号：1
 
 
-[2025-07-04 14:50:39.581]
+[2025-07-04 17:05:11.148]
 目标文件夹：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS
 
-[2025-07-04 14:50:39.582]
-找到修改时间在两分钟以内的最新xml文件：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS\UserDefine-24A03600028-2025_07_04-14_50_06_027--.xml
+[2025-07-04 17:05:11.150]
+在指定文件夹中未找到修改时间在两分钟以内，序列号为1的xml文件。
 
-[2025-07-04 14:50:39.582]
-从MesDemoConfig.ini中获取到NET数据格式：
- 1\LTE_MaxPower
-1\1\LTE_MaxPower
-1\1\Band
-1\2\Tx Power
-1\2\AvgTxPwr
-
-
-[2025-07-04 14:50:39.582]
-从MesDemoConfig.ini中获取到NET数据格式：
- 2\WCDMA_MaxOutputPower
-2\1\UE_Power
-2\1\Band
-2\2\UE_Power
-2\2\Tx Power
-
-
-[2025-07-04 14:50:39.583]
-从MesDemoConfig.ini中获取到NET数据格式：
- 3\GSMBurstTiming
-3\1\GSMBurstTiming
-3\1\Band
-3\2\GSMBurstTiming
-3\2\avgTxPwr
-
-
-[2025-07-04 14:50:39.583]
-从MesDemoConfig.ini中获取到GPS数据格式：
- 4\Radiated_GPS_Measure
-4\1\Radiated_GPS_Measure
-4\1\GPS_Mobile_reported_frequency
-4\2\Radiated_GPS_Measure
-4\2\GPS_Mobile_reported_C/No
-
-
-[2025-07-04 14:50:39.584]
-开始解析NET数据
-
-[2025-07-04 14:50:39.585]
-第1次查找：
-  LTE_MaxPower:LTE_MaxPower:Band
-  LTE_MaxPower:Tx Power:AvgTxPwr
-
-[2025-07-04 14:50:39.585]
-未找到Band和AvgTxPwr的匹配值 LTE_MaxPower:LTE_MaxPower:Band:Tx Power:AvgTxPwr
-
-[2025-07-04 14:50:39.585]
-第2次查找：
-  WCDMA_MaxOutputPower:UE_Power:Band
-  WCDMA_MaxOutputPower:UE_Power:Tx Power
-
-[2025-07-04 14:50:39.587]
-未找到Band和Tx Power的匹配值 WCDMA_MaxOutputPower:UE_Power:Band:UE_Power:Tx Power
-
-[2025-07-04 14:50:39.587]
-第3次查找：
-  GSMBurstTiming:GSMBurstTiming:Band
-  GSMBurstTiming:GSMBurstTiming:avgTxPwr
-
-[2025-07-04 14:50:39.588]
-未找到Band和avgTxPwr的匹配值 GSMBurstTiming:GSMBurstTiming:Band:GSMBurstTiming:avgTxPwr
-
-[2025-07-04 14:50:39.588]
-开始解析GPS数据
-
-[2025-07-04 14:50:39.589]
-第1次查找：
-  Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_frequency
-  Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_C/No
-
-[2025-07-04 14:50:39.589]
-未找到GPS_Mobile_reported_frequency和GPS_Mobile_reported_C/No的匹配值 Radiated_GPS_Measure:Radiated_GPS_Measure:GPS_Mobile_reported_frequency:Radiated_GPS_Measure:GPS_Mobile_reported_C/No
-
-[2025-07-04 14:50:39.589]
-找到数据如下：
-
-
-[2025-07-04 14:50:39.590]
-数据为空，停止上传
-
-[2025-07-04 14:52:21.669]
-D:\WorkSpace\Qualcomm_Platform\MesDemoDLL\MesDemo\bin\Debug\MesDemoConfig\MesDemoConfig.ini
-
-[2025-07-04 14:52:21.670]
-lixy1
-11111112
-10.10.30.38
-80
-产品序列号：24A03600028
-
-
-[2025-07-04 14:52:21.671]
-目标文件夹：C:\Qualcomm\Log\LIXY1-2025_07_04-Qualcomm_P20_AU_CALLOSS
-
-[2025-07-04 14:52:21.672]
-在指定文件夹中未找到修改时间在两分钟以内，序列号为24A03600028的xml文件。
-
-[2025-07-04 14:52:21.672]
+[2025-07-04 17:05:11.150]
 未找到数据xml文件，停止上传
 
