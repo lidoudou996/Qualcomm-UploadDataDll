@@ -53,7 +53,8 @@ namespace MesDemo
 
                     if (!response.IsSuccessStatusCode)
                     {
-                        return ((int)response.StatusCode, $"errCode:{(int)response.StatusCode}, retMsg:{response.ReasonPhrase}");
+                        retmsg = $"errCode:{(int)response.StatusCode}, retMsg:{response.ReasonPhrase}";
+                        return ((int)response.StatusCode, retmsg);
                     }
                     
                     string xmlString = response.Content.ReadAsStringAsync().Result;
@@ -63,18 +64,20 @@ namespace MesDemo
 
                         bool isOk = rootObj["IsOK"]?.ToString().ToLower() == "true" || rootObj["IsOK"]?.ToString() == "1";
                         int statuscode = isOk ? 0 : -1;
-                        retmsg = rootObj.ToString(Formatting.None);
+                        retmsg = rootObj.ToString(Formatting.None).ToLower();
                         return (statuscode, retmsg);
                     }
                     catch (Exception ex)
                     {
-                        return (-1, $"XML parsing error: {ex.Message}");
+                        retmsg = $"XML parsing error: {ex.Message}";
+                        return (-1, retmsg);
                     }
                 }
             }
             catch (Exception ex)
             {
-                return (-1, $"Request error: {ex.Message}");
+                retmsg = $"Request error: {ex.Message}\n请检查网络连接";
+                return (-1, retmsg);
             }
         }
 
@@ -216,71 +219,6 @@ namespace MesDemo
             return retMsg;
         }
 
-        public static int GetConfigFileByProductSN()
-        {
-            HttpInfo httpInfo = new HttpInfo
-            {
-                url = Constants.TisGetConfigFileByProductSN,
-                ip = "10.10.30.38",
-                port = "80"
-            };
-            string currentDate = DateTime.Now.ToString("yyyy_MM_dd");
-            string _logFolderPath = @"C:\Qualcomm\UploadDataLog";
-            _logFolderPath = Path.Combine(_logFolderPath, currentDate);
-            string _logFileName = "UploadDataLog.log";
-            
-
-            // 这里需要实现 RC4 加密逻辑
-            // _params.Password = ...;
-            string encPassword = "";
-            string encRes = IRC4_EncryptData("11111111", ref encPassword);
-            if (string.IsNullOrEmpty(encRes))
-                Logger.Log(encRes);
-            Logger.Log(encPassword);
-            string post = $"account=lixy1&password={encPassword}&productSN=24A03600028&materialTypeCode=&";
-            string retMsg = "";
-            int statusCode;
-            (statusCode, retMsg) = IFHttp.HttpPostRequest(httpInfo, post);
-
-            Logger.Log($"statusCode:{statusCode}\n" +retMsg);
-            if (statusCode == 0)
-            {
-                try
-                {
-                    JObject obj = JObject.Parse(retMsg);
-                    string SummonsNumber = obj["SucceedDescription"].ToString();
-                    Logger.Log(SummonsNumber);
-                    return 0;
-                }
-                catch (Exception ex)
-                {
-                    string Msg = $"JSON parsing error1: {ex.Message}";
-                    Logger.Log(Msg);
-                    return -1;
-                }
-                //logger.Log(message);
-            }
-            else
-            {
-                try
-                {
-                    JObject obj = JObject.Parse(retMsg);
-                    string Msg = obj["Description"].ToString();
-                    Logger.Log(Msg);
-                    return -1;
-                }
-                catch (Exception ex)
-                {
-                    string Msg = $"JSON parsing error2: {ex.Message}";
-                    Logger.Log(Msg);
-                    return -1;
-                }
-                //logger.Log(message);
-            }
-
-            return 0;
-        }
-
         public static int GetBomInfo(TisProduceWebService_Params _params, GetBomInfoByBoardSN_Res _res)
         {
             HttpInfo httpInfo = new HttpInfo
@@ -406,27 +344,46 @@ namespace MesDemo
             {
                 try
                 {
+                    if(string.IsNullOrEmpty(retMsg))
+                    {
+                        _res.Msg = "访问网址请求失败，返回信息为空";
+                        return -1;
+                    }
+                    else if (!retMsg.Contains("description"))
+                    {
+                        _res.Msg = $"访问网址返回信息缺少字段description：\n{retMsg}";
+                        return -1;
+                    }
                     JObject obj = JObject.Parse(retMsg);
-                    _res.Msg = obj["Description"].ToString();
+                    _res.Msg = obj["description"].ToString();
                     return -1;
                 }
                 catch (Exception ex)
                 {
-                    _res.Msg = $"JSON parsing error: {ex.Message}";
+                    string msg = $"JSON parsing error: {ex.Message}\n\n" +
+                                 $"retMsg: {retMsg}";
+                    _res.Msg = msg;
                     return -1;
                 }
             }
 
             try
             {
+                if (!retMsg.Contains("succeeddescription"))
+                {
+                    _res.Msg = $"访问网址返回信息缺少字段succeeddescription：\n{retMsg}";
+                    return -1;
+                }
                 JObject obj = JObject.Parse(retMsg);
-                _res.SummonsNumber = obj["SucceedDescription"].ToString();
+                _res.SummonsNumber = obj["succeeddescription"].ToString();
                 Logger.Log("获取到传票号：" + _res.SummonsNumber, LOGTOWINDOW);
                 return 0;
             }
             catch (Exception ex)
             {
-                _res.Msg = $"JSON parsing error: {ex.Message}";
+                string msg = $"JSON parsing error: {ex.Message}\n\n" +
+                             $"retMsg: {retMsg}";
+                _res.Msg = msg;
                 return -1;
             }
         }
@@ -459,12 +416,24 @@ namespace MesDemo
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(retMsg))
+                    {
+                        string msg = "访问网址请求失败，返回信息为空";
+                        return (-1, msg);
+                    }
+                    else if(!retMsg.Contains("description"))
+                    {
+                        string msg = $"访问网址返回信息缺少字段description：{retMsg}";
+                        return (-1, msg);
+                    }
                     JObject obj = JObject.Parse(retMsg);
-                    return (-1, obj["Description"].ToString());
+                    return (-1, obj["description"].ToString());
                 }
                 catch (Exception ex)
                 {
-                    return (-1, $"JSON parsing error: {ex.Message}");
+                    string msg = $"JSON parsing error: {ex.Message}\n\n" +
+                                 $"retMsg: {retMsg}";
+                    return (-1, msg);
                 }
             }
             Logger.Log("数据上传成功：\n" + _params.Logs, LOGTOWINDOW);
@@ -496,12 +465,24 @@ namespace MesDemo
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(retMsg))
+                    {
+                        string msg = "访问网址请求失败，返回信息为空";
+                        return (-1, msg);
+                    }
+                    else if (!retMsg.Contains("description"))
+                    {
+                        string msg = $"访问网址返回信息缺少字段description：{retMsg}";
+                        return (-1, msg);
+                    }
                     JObject obj = JObject.Parse(retMsg);
-                    return (-1, obj["Description"].ToString());
+                    return (-1, obj["description"].ToString());
                 }
                 catch (Exception ex)
                 {
-                    return (-1, $"JSON parsing error: {ex.Message}");
+                    string msg = $"JSON parsing error: {ex.Message}\n\n" +
+                                 $"retMsg: {retMsg}";
+                    return (-1, msg);
                 }
             }
             Logger.Log("工序id上传成功,id:"+ _params.WorkProcessID, LOGTOWINDOW);

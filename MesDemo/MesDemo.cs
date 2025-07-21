@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using QC.QTMDotNetKernelInterface;
+//using QC.QTMDotNetKernelInterface.Environment;
 using System.IO;
 using System.Data;
 using System.Runtime.InteropServices;
