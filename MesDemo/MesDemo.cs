@@ -136,10 +136,12 @@ namespace MesDemo
                           $"{i}\\2\\{dataName2}\n";
                 Logger.Log(content);
             }
+
+            bool isPass = true;
             if(testDataInfos_NET.Count > 0)
-                FindAndParseXml.ParseXml_NET(ref dataLog, xmlPath, testDataInfos_NET);
+                FindAndParseXml.ParseXml_NET(ref dataLog, xmlPath, testDataInfos_NET, ref isPass);
             if(testDataInfos_GPS.Count > 0)
-                FindAndParseXml.ParseXml_GPS(ref dataLog, xmlPath, testDataInfos_GPS);
+                FindAndParseXml.ParseXml_GPS(ref dataLog, xmlPath, testDataInfos_GPS, ref isPass);
 
             Logger.Log("找到数据如下：\n"+dataLog, LOGTOWINDOW);
 
@@ -157,7 +159,8 @@ namespace MesDemo
             测试日期时间 @测试项名称@测试指标 @测试记录@0（测试结果0：失败 1：成功）$测试日期时间1 @测试项名称1@测试指标1 @测试记录1@1（测试结果0：失败 1：成功）
             */
             string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string uploadLog = $"{currentTime}@RF Test@@{dataLog}@0";
+            string result = isPass ? "1" : "0";
+            string uploadLog = $"{currentTime}@RF Test@@{dataLog}@{result}";
             ProductDebugLogUpload_Params param = new ProductDebugLogUpload_Params
             {
                 Ip = Ip,
@@ -261,7 +264,7 @@ namespace MesDemo
     public class FindAndParseXml
     {
         const bool LOGTOWINDOW = true;
-        static public void ParseXml_NET(ref string log, string xmlPath, List<TestDataInfo> testDataInfos)
+        static public void ParseXml_NET(ref string log, string xmlPath, List<TestDataInfo> testDataInfos, ref bool isPass)
         {
             //var logger = new Logger(_logFolderPath, _logFileName);
             Logger.Log("开始解析NET数据", LOGTOWINDOW);
@@ -321,7 +324,10 @@ namespace MesDemo
                         .FirstOrDefault(di => (string)di.Element("N") == "Status")?
                         .Element("V")?.Value ?? "未找到值";
                     string band = bands[j].Element("V")?.Value ?? "未找到值";
-                    //string status = statuss[j].Element("V")?.Value ?? "未找到值";
+
+                    if (status.ToUpper() == "FAIL")
+                        isPass = false;
+
                     log += $"{testName}, {diName1}_{band},{diName2}_{value},{status};\n";
                     content += $"找到数据：{testName}, {diName1}_{band},{diName2}_{value},{status};\n";
                 }
@@ -346,7 +352,7 @@ namespace MesDemo
             }
         }
 
-        static public void ParseXml_GPS(ref string log, string xmlPath, List<TestDataInfo> testDataInfos)
+        static public void ParseXml_GPS(ref string log, string xmlPath, List<TestDataInfo> testDataInfos, ref bool isPass)
         {
             Logger.Log("开始解析GPS数据", LOGTOWINDOW);
 
@@ -407,6 +413,9 @@ namespace MesDemo
                         .Descendants("DI")
                         .FirstOrDefault(di => (string)di.Element("N") == "Status")?
                         .Element("V")?.Value ?? "未找到值";
+
+                    if (status.ToUpper() == "FAIL")
+                        isPass = false;
 
                     string freq = freqs[j].Element("V")?.Value ?? "未找到值";
                     log += $"{testName}, {diName1}_{freq},{diName2}_{value},{status};\n";
